@@ -1,0 +1,43 @@
+project_id = "nduiocjjwlkeowrjohxb"
+
+[functions.process-research]
+verify_jwt = true
+
+[functions.refine-data]
+verify_jwt = true
+
+[functions.generate-intro-scripts]
+verify_jwt = true
+
+[functions.improve-script]
+verify_jwt = true
+
+[functions.orchestrate-research]
+verify_jwt = true
+
+[functions.enrich-linkedin]
+verify_jwt = true
+
+[functions.enrich-company]
+verify_jwt = true
+
+[functions.enrich-news]
+verify_jwt = true
+
+[functions.enrich-web-scraping]
+verify_jwt = true
+
+[functions.validate-research]
+verify_jwt = true
+
+[functions.generate-embeddings]
+verify_jwt = true
+
+[functions.semantic-search]
+verify_jwt = true
+
+[functions.generate-context-script]
+verify_jwt = true
+
+[functions.get-historical-insights]
+verify_jwt = true
