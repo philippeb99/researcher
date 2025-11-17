@@ -1,0 +1,31 @@
+1. Using the Supabase CLI for Local Development:
+This method is ideal for developing and testing your application locally with a full Supabase stack. Install Supabase CLI.
+Code
+
+    npm i -D supabase
+Log in (if connecting to a cloud project):
+Code
+
+    npx supabase login
+Initialize your local project.
+Code
+
+    npx supabase init
+Link to a cloud project (optional, if you want to sync schema):
+Code
+
+    npx supabase link --project-ref <your-project-id>
+Pull down the database schema from your cloud project (optional): 
+Code
+
+    npx supabase db pull
+Start local Supabase services.
+Code
+
+    npx supabase start
+Access local Supabase Studio: Open your browser to localhost:8000 (default credentials: username supabase, password this_password_is_insecure_and_should_be_updated).
+2. Using the Official Supabase VS Code Extension:
+This extension provides helpful features for interacting with Supabase directly within VS Code.
+Install the "Supabase" extension: Search for "Supabase" in the VS Code Extensions marketplace and install the official extension.
+Connect to your project: The extension will likely guide you through connecting to your Supabase project, potentially involving logging in to your Supabase account.
+Features: This extension can offer features like schema visualization, SQL query execution, and integration with GitHub Copilot Chat for Supabase-specific questions.
