@@ -77,7 +77,7 @@ function extractFirstJsonObject(content: string): any | null {
     }
   }
   
-  console.log("✗ Could not extract valid JSON object");
+  console.log(`✗ Could not extract valid JSON object from content ${content}`);
   return null;
 }
 
@@ -256,7 +256,7 @@ async function getBackgroundWithCitations(
   supabaseClient: any,
   researchJobId: string
 ) {
-  console.log(`Starting background research for: ${job.company_name}`);
+  console.log(`Starting background research (Perplexity) for: ${job.company_name}`);
   
   const perplexityApiKey = Deno.env.get('PERPLEXITY_API_KEY');
   if (!perplexityApiKey) {
@@ -328,7 +328,7 @@ Focus on verifiable information and include citations for all claims. Prefer loc
 
     const data = JSON.parse(responseText);
     const backgroundText = data.choices[0]?.message?.content || '';
-    
+    console.log(`Background text  ${backgroundText} `);
     // Extract citations from Perplexity's structured response
     let citations: string[] = [];
     
@@ -357,7 +357,7 @@ Focus on verifiable information and include citations for all claims. Prefer loc
 
 // Stage C: Extract structured data from background
 async function getStructuredProfile(backgroundText: string, citations: any[], job: any) {
-  console.log(`Extracting structured profile for: ${job.company_name}`);
+  console.log(`9 - Extracting structured profile (Perplexity) for: ${job.company_name} using background as : ${backgroundText}`);
   
   const perplexityApiKey = Deno.env.get('PERPLEXITY_API_KEY');
   if (!perplexityApiKey) {
@@ -437,7 +437,8 @@ Include 5-8 discussion topics. Use only verifiable facts from the research.`;
     const content = data.choices[0]?.message?.content || '';
     
     console.log("Structured extraction response content preview:", content.substring(0, 200));
-    
+    console.log("Full Response Content Object for 9 - Structure profile :", content.substring(0, 11000));
+
     // Use robust JSON extractor
     const structuredData = extractFirstJsonObject(content);
     if (structuredData) {
@@ -1454,7 +1455,7 @@ serve(async (req) => {
     }
 
   try {
-    console.log('=== STARTING STAGED RESEARCH PIPELINE ===');
+    console.log('1 === STARTING STAGED RESEARCH PIPELINE ===');
     
     // Stage A: Fetch website context
     const urlsToFetch = [job.website_url];
@@ -1463,7 +1464,7 @@ serve(async (req) => {
     }
     
     const siteContext = await fetchSiteContext(urlsToFetch);
-    console.log(`Site context extracted: ${siteContext.length} characters`);
+    console.log(`4 - Site context extracted: ${siteContext.length} characters`);
 
     // Stage B: Get background research with citations  
     const { backgroundText, citations: backgroundCitations } = await getBackgroundWithCitations(siteContext, job, supabase, research_job_id);
